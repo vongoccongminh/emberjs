@@ -25,5 +25,39 @@ Trong đó:
 - Route: Một route là một đối tượng mà nó sẽ làm cho template hiển thị thông tin theo model quy định. Các router dịch một URL vào một loạt các template lồng nhau, mỗi template được hỗ trợ bởi một model. Nếu templates hoặc models thay đổi do người dùng thay đổi, Ember tự động cập nhật URL trên thanh URL của trình duyệt. Điều này có nghĩa rằng, vào thời điểm bất kỳ, người dùng có thể chia sẻ các URL của ứng dụng. Khi ai đó nhấp chuột vào liên kết, họ đang xem nội dung tương tự như người chia sẻ đã thấy. 
 - Model: Model là một đối tượng được lưu trong persistent state. Template có trách nhiệm hiển thị các mô hình cho người dùng bằng cách biến nó thành HTML. Các model và route được liên kết với nhau bởi vì model thực hiện các route bằng cách đi qua như là đối số mỗi khi route được gọi đến. 
 - View: Xử lý sự kiện người dùng và cập nhật DOM. 
-- Controller: Controller quản lý logic hiển thị của model và cũng kiểm soát các hoạt động giữa các route, model, và view. Nó lấy model từ route và tạo ra các kết nối giữa các view, model, and template. Ember.js tự động sinh ra controller
+- Controller: Controller quản lý logic hiển thị của model và cũng kiểm soát các hoạt động giữa các route, model, và view. Nó lấy model từ route và tạo ra các kết nối giữa các view, model, and template. Ember.js tự động sinh ra controller.
 
+
+# Cài đặt TaskApp đơn giản
+
+- Cài đặt Ember CLI
+Nhập vào command line:
+```sh
+$ npm install -g ember-cli
+```
+Lúc này, Ember command đã được cài đặt trong console. Kiểm tra lại bằng cách:
+```sh
+$ ember -v
+```
+Ta sẽ nhận được trên màn hình như sau:
+```sh
+version: 2.12.1
+node: 6.10.2
+os: win32 x64
+```
+
+- Tạo ứng dụng
+Khởi tạo ứng dụng mới: 
+```sh
+$ ember new my_app
+```
+Chuyển đến đường dẫn của ứng dụng vừa tạo:
+```sh
+$ cd my_app
+```
+- Khởi chạy ứng dụng
+Ứng dụng cơ bản đã được thiết lập để có thể chạy được trên trình duyệt. Nhập vào terminal:
+```sh
+$ ember server
+```
+Mở trình duyệt vào vao địa chỉ http://localhost:4200 để truy cập.
