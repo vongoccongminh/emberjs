@@ -19,6 +19,7 @@ Kiến trúc của Ember.js về cơ bản bao gồm các thành phần:
 - Model 
 - View 
 - Controller 
+
 Trong đó: 
 - Template: Mô tả các giao diện người dùng của ứng dụng. Ember.js cung cấp thư viện Handlebar template để xây dựng các ứng dụng front-end, giống như HTML thông thường. Có thể trực tiếp nhúng templates vào các thẻ HTML. Mỗi template được hỗ trợ bởi một model, và các template tự động cập nhật nếu các model thay đổi. 
 - Route: Một route là một đối tượng mà nó sẽ làm cho template hiển thị thông tin theo model quy định. Các router dịch một URL vào một loạt các template lồng nhau, mỗi template được hỗ trợ bởi một model. Nếu templates hoặc models thay đổi do người dùng thay đổi, Ember tự động cập nhật URL trên thanh URL của trình duyệt. Điều này có nghĩa rằng, vào thời điểm bất kỳ, người dùng có thể chia sẻ các URL của ứng dụng. Khi ai đó nhấp chuột vào liên kết, họ đang xem nội dung tương tự như người chia sẻ đã thấy. 
