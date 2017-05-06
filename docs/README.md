@@ -99,7 +99,7 @@ Thêm dòng lệnh vào file ***ember-cli-build.js***
 app.import('bower_components/bootstrap/dist/css/bootstrap.css')
 ```
 Tạo navigation bar. Thêm vào file ***application.hbs*** các dòng lệnh sau:
-```js
+```javascript
 <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -123,7 +123,7 @@ Tạo navigation bar. Thêm vào file ***application.hbs*** các dòng lệnh sa
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          {{{{outlet}}}}
+          {{ outlet }}
         </div>
       </div>
     </div>
