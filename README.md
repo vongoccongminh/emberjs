@@ -60,4 +60,254 @@ $ cd my_app
 ```sh
 $ ember server
 ```
-Mở trình duyệt vào vao địa chỉ http://localhost:4200 để truy cập.
+Mở trình duyệt vào địa chỉ http://localhost:4200 để truy cập. 
+![a](/images/emberwelcome.png)
+
+Sau đó, tắt server và thêm các route vào project.
+Tắt server bằng cách ấn tổ hợp Ctrl + c vào terminal.
+Thêm route tasks vào project:
+```sh
+$ ember g route tasks
+```
+Sau đó, mở lại server và truy cập vào trang http://localhost:4200/tasks sẽ thấy:
+![a]((/images/taskswelcome.png))
+
+Thêm route new vào trong tasks
+```sh
+$ ember g route tasks/new
+```
+
+- Thêm Bootstrap vào project
+Nhập vào terminal:
+```sh
+$ bower install bootstrap
+```
+Thêm dòng lệnh vào file ***ember-cli-build.js***
+```javascript
+app.import('bower_components/bootstrap/dist/css/bootstrap.css')
+```
+Tạo navigation bar. Thêm vào file ***application.hbs*** các dòng lệnh sau:
+```javascript
+<nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">My App</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li>{{#link-to 'tasks'}}Home{{/link-to}}</li>
+            <li>{{#link-to 'tasks.new'}}New{{/link-to}}</li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          {{outlet}}
+        </div>
+      </div>
+    </div>
+```
+
+- Tạo form.
+Thêm vào file ***new.hbs*** các dòng lệnh sau
+```javascript
+<form>
+  <div class="form-group">
+    <label>Title</label>
+    {{input type="text" class="form-control" value=title placeholder="Title of task..."}}
+  </div>
+  <div class="form-group">
+    <label>Date</label>
+    {{input type="date" class="form-control" value=date}}
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    {{textarea class="form-control" value=description placeholder="Descripton task..."}}
+  </div>
+  <button {{action 'addTask'}} class="btn btn-primary">Save</button>
+</form>
+```
+
+- Tạo controller
+Nhập vào terminal:
+```sh
+$ ember g controller tasks
+$ ember g controller tasks/new
+```
+
+Bắt sự kiện click vào button **save**, ta thêm vào file ***new.js*** trong thư mục *controller/tasks* như sau:
+```javascript
+  actions: {
+    addTask: function(){
+      var title = this.get('title');
+      var description = this.get('description');
+      var date = this.get('date');
+
+      //create new tasks
+      var newTask = this.store.createRecord('task', {
+        title: title,
+        description: description,
+        date: new Date(date)
+      });
+
+      //save to database
+      newTask.save();
+
+      //clear form
+      this.setProperties({
+        title: '',
+        description: '',
+        date: ''
+      });
+    }
+  }
+```
+
+- Tạo model
+Nhập vào terminal
+```sh
+$ ember g model task
+```
+Thêm vào file ***task.js***
+```javascript
+import DS from 'ember-data';
+
+export default DS.Model.extend({
+title: DS.attr('string'),
+description: DS.attr('string'),
+date: DS.attr('date'),
+created: DS.attr('string', {
+  defaultValue: function(){
+    return new Date();
+  }
+})
+});
+```
+
+- Cài đặt emberfire
+Nhập vào terminal 
+```sh
+$ ember install emberfire
+```
+
+Cài đặt lại biến môi trường trong file ***enviroment.js***:
+```javascript
+  contentSecurityPolicy: {
+      'script-src': "'self' 'unsafe-eval' apis.google.com",
+      'frame-src': "'self' https://*.firebaseapp.com",
+      'connect-src': "'self' wss://*.firebaseio.com https://*.googleapis.com"
+    },
+    rootURL: '/',
+   
+    firebase: {
+      apiKey: "AIzaSyDbpN-c8H8KexU4nVrVD9b86Dkikos8P6o",
+   authDomain: "myapp-449f5.firebaseapp.com",
+   databaseURL: "https://myapp-449f5.firebaseio.com",
+   projectId: "myapp-449f5",
+   storageBucket: "myapp-449f5.appspot.com",
+   messagingSenderId: "891880234199"
+ },
+```
+Lưu ý: những dòng code trên được phát sinh khi tạo project để lưu dữ liệu tại https://firebase.google.com/.
+Khi làm tới đây, ta có thể sử dụng app để tạo các task và lưu vào database trên firebase.
+
+- Hiển thị những task đã được lưu
+Thêm vào file ***tasks.js*** trong thư mục *routes*:
+```javascript
+  model() {
+    return this.store.findAll('task');
+```
+Thêm vào file ***tasks.hbs***
+```javascript
+{{#each model as |task|}}
+<div class="well">
+  <h4>Title: {{#link-to 'tasks.edit' task.id}}{{task.title}}{{/link-to}}</h4>
+  <small>Date: {{format-date task.date}}</small>
+  <h4>Discription: {{task.description}}</h4>
+</div>
+{{/each}}
+```
+
+- Edit task
+Tạo route edit
+```sh
+$ ember g route tasks/edit
+```
+Tạo controller edit
+```sh
+$ ember g controller tasks/edit
+```
+
+Thêm vào file ***edit.hbs***
+```javascript
+<form>
+  <div class="form-group">
+    <label>Title</label>
+    {{input type="text" class="form-control" value=model.title placeholder="Title of task..."}}
+  </div>
+  <div class="form-group">
+    <label>Date</label>
+    {{input type="date" class="form-control" value=model.date}}
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    {{textarea class="form-control" value=model.description placeholder="Descripton task..."}}
+  </div>
+  <button {{action 'editTask' model.id}} class="btn btn-primary">Save</button>
+</form>
+```
+Thêm vào file ***edit.js*** trong thư mục */controller/tasks*
+```javascript
+export default Ember.Controller.extend({
+  actions: {
+    editTask: function(id){
+      var self = this;
+      var title = this.get('model.title');
+      var description = this.get('model.description');
+      var date = this.get('model.date');
+
+      //update task
+      this.store.findRecord('task', id).then(function(task){
+        task.set('title', title);
+        task.set('description', description);
+        task.set('date', new Date(date));
+
+        //save to database
+        task.save();
+        self.transitionTo('task');
+      });
+    }
+  }
+});
+```
+
+- Xóa task
+Thêm vào file ***task.hbs***
+```javascript
+  <button {{action 'deleteTask' task.id}} class="btn btn-danger">Delete</button>
+```
+Thêm vào file ***tasks.js*** trong thư mục */controller*
+```javascript
+export default Ember.Controller.extend({
+  actions: {
+    deleteTask: function(id) {
+      this.store.findRecord('task', id).then(function(task){
+        task.deleteRecord();
+
+        task.save();
+      });
+    }
+  }
+});
+```
+
+# Như vậy, ta đã hoàn thành xong việc cài đặt TaskApp bằng EmberJS #
