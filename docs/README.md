@@ -1,8 +1,8 @@
 # Tìm hiểu EmberJS
 
-## 1. Định nghĩa
+## 1. Định nghĩa ##
 - Ember.js là một mã nguồn mở JavaScript phía client khuôn khổ cho việc phát triển các ứng dụng web và sử dụng các cấu trúc mô hình MVC (Model-View-Controller).
-## 2. Thuận lợi khi sử dụng EmberJS
+## 2. Thuận lợi khi sử dụng EmberJS ##
 - Mã nguồn mở. 
 - Linh hoạt, có thể tăng hiệu năng của ứng dụng mà không cần phải load lại cả trang. 
 - Sử dụng các thư viện tương tự như HTML. 
