@@ -61,7 +61,7 @@ $ cd my_app
 $ ember server
 ```
 Mở trình duyệt vào địa chỉ http://localhost:4200 để truy cập. 
-![a](/images/emberwelcome.png)
+![Home](/images/emberwelcome.png)
 
 Sau đó, tắt server và thêm các route vào project.
 Tắt server bằng cách ấn tổ hợp Ctrl + c vào terminal.
@@ -70,7 +70,7 @@ Thêm route tasks vào project:
 $ ember g route tasks
 ```
 Sau đó, mở lại server và truy cập vào trang http://localhost:4200/tasks sẽ thấy:
-![a]((/images/taskswelcome.png))
+![Home2]((/images/taskswelcome.png))
 
 Thêm route new vào trong tasks
 ```sh
@@ -311,3 +311,7 @@ export default Ember.Controller.extend({
 ```
 
 # Như vậy, ta đã hoàn thành xong việc cài đặt TaskApp bằng EmberJS #
+
+![tasks](/images/sudung1.png)
+
+![tasks](/images/sudung2.png)
