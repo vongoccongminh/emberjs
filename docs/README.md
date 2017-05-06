@@ -1,10 +1,10 @@
 # Tìm hiểu EmberJS
 
-## 1. Định nghĩa ##
+## 1. Định nghĩa
 
 - Ember.js là một mã nguồn mở JavaScript phía client khuôn khổ cho việc phát triển các ứng dụng web và sử dụng các cấu trúc mô hình MVC (Model-View-Controller).
 
-## 2. Thuận lợi khi sử dụng EmberJS ##
+## 2. Thuận lợi khi sử dụng EmberJS
 
 - Mã nguồn mở. 
 - Linh hoạt, có thể tăng hiệu năng của ứng dụng mà không cần phải load lại cả trang. 
@@ -99,7 +99,7 @@ Thêm dòng lệnh vào file ***ember-cli-build.js***
 app.import('bower_components/bootstrap/dist/css/bootstrap.css')
 ```
 Tạo navigation bar. Thêm vào file ***application.hbs*** các dòng lệnh sau:
-```javascript
+```js
 <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
