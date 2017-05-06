@@ -70,7 +70,7 @@ Thêm route tasks vào project:
 $ ember g route tasks
 ```
 Sau đó, mở lại server và truy cập vào trang http://localhost:4200/tasks sẽ thấy:
-![Home2](images/taskswelcome.pn)
+![Home2](images/taskswelcome.png)
 
 Thêm route new vào trong tasks
 ```sh
