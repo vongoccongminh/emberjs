@@ -123,7 +123,7 @@ Tạo navigation bar. Thêm vào file ***application.hbs*** các dòng lệnh sa
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          {{outlet}}
+          {{{{outlet}}}}
         </div>
       </div>
     </div>
